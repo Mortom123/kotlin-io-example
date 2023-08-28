@@ -1,0 +1,20 @@
+version: '3'
+networks:
+  pulsar:
+    name: kotlin-io-example_pulsar
+    external: true
+
+services:
+  sink:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /pulsar/bin
+    networks:
+      - pulsar
+    volumes:
+      - ./client.conf:/pulsar/conf/client.conf
+      - ./target/kotlin-io-example-0.0.1.nar:/pulsar/bin/kotlin-io-example-0.0.1.nar
+      - ./sink-config.yml:/pulsar/bin/sink-config.yml
+    entrypoint: /bin/bash -c "./pulsar-admin sinks localrun --tenant public --namespace default --sink-type /pulsar/bin/*.nar --name tibrvSinkTest --sink-config-file /pulsar/bin/sink-config.yml --inputs test"
+    #entrypoint: /bin/bash

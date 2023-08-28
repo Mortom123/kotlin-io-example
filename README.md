@@ -11,3 +11,11 @@ Use Kotlin develop pulsar connector example
 ```log
 HELLO
 ```
+
+
+# Updated
+
+1. mvn clean package
+2. docker-compose -f broker-compose.yml up -d
+3. docker-compose -f sink-compose.yml build
+4. docker-compose -f sink-compose.yml up
