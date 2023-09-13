@@ -78,7 +78,8 @@ services:
       - managedLedgerDefaultEnsembleSize=1
       - managedLedgerDefaultWriteQuorum=1
       - managedLedgerDefaultAckQuorum=1
-      - advertisedAddress=broker
+      - internalListenerName=internal
+      - advertisedListeners=internal:pulsar://broker:6650,localhost:pulsar://localhost:6650
       - PULSAR_MEM=-Xms512m -Xmx512m -XX:MaxDirectMemorySize=256m
       # this is needed for connectors to work
       - functionsWorkerEnabled=true
