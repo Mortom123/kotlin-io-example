@@ -13,7 +13,6 @@ services:
     networks:
       - pulsar
     volumes:
-      - ./client.conf:/pulsar/conf/client.conf
       - ./target/kotlin-io-example-0.0.1.nar:/pulsar/bin/kotlin-io-example-0.0.1.nar
       - ./sink-config.yml:/pulsar/bin/sink-config.yml
     entrypoint: /bin/bash -c "./pulsar-admin sinks localrun --broker-service-url pulsar://broker:6650 --tenant public --namespace default --sink-type /pulsar/bin/*.nar --name sinkTest --sink-config-file /pulsar/bin/sink-config.yml --inputs test"
